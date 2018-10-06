@@ -1,0 +1,4 @@
+rofi.combi-modi:    window,drun,ssh
+rofi.font:          IBM Plex Mono 10
+rofi.modi:          combi
+rofi.theme: /usr/share/rofi/themes/gruvbox-dark-hard.rasi
