@@ -114,6 +114,8 @@ set gdefault " use the `g` flag by default.
 " allow the cursor to go anywhere in visual block mode.
 set virtualedit+=block
 
+" yank to + register.
+set clipboard=unnamedplus
 " leader is a key that allows you to have your own "namespace" of keybindings.
 " You'll see it a lot below as <leader>
 let mapleader = ","
