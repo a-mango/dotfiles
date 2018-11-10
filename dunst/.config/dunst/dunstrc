@@ -215,9 +215,10 @@
 # NOTE: It might be helpful to run dunst -print in a terminal in order
 # to find fitting options for rules.
 
-#[espeak]
-#    summary = "*"
-#    script = dunst_espeak.sh
+[volume]
+    appname=pa-applet
+    summary = "*"
+    script ="" 
 
 #[script-test]
 #    summary = "*script*"
@@ -276,18 +277,6 @@
         timeout = 0
         background = "#0033bb"
         foreground = "#dddddd"
-#
-[weechat hl]
-     appname = weechat
-     category = weechat.HL
-     background = "#FF5C47"
-     foreground = "#FFFFFF"
-#
-[weechat pn]
-     appname = weechat
-     category = weechat.PM
-     background = "#D53B84"
-     foreground = "#FFFFFF"
 #
 #[CMUS]
 #    appname = CMUS
