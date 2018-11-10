@@ -1,7 +1,9 @@
-alias cp="cp -i"                          # confirm before overwriting something
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
+alias cp="cp -i"                    # Confirm before overwriting
+alias df='df -h'                    # Human-readable sizes
+alias free='free -m'                # Show sizes in MB
 alias np='nano -w PKGBUILD'
-alias more=less
+alias more=most
+alias less=most                     # Always use most
 alias ping='ping 1.1.1.1'
+alias readme='most README.MD'       # Open README.md with most
 alias code=code-oss
