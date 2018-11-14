@@ -346,7 +346,7 @@ gaps outer 5
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-#smart_gaps on
+smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
@@ -399,3 +399,8 @@ mode "$mode_gaps_outer" {
 #    bindsym Return mode "default"
 #    bindsym Excape mode "default"
 #}
+
+# Dropdown terminal
+bindsym $mod+shift+section exec i3-quickterm
+# always pop standard shell, without the menu
+bindsym $mod+section exec i3-quickterm shell
