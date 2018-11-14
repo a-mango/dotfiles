@@ -1,0 +1,21 @@
+!! Include files from .config/x11 dir
+#include ".settings/X11/ssh-askpass"
+#include ".settings/X11/colors"
+
+Xft.dpi: 120
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+
+*fading:                          15
+*fadeColor:                       black
+!*cursorColor:                     #fbf1c7
+!*pointerColorBackground:          #2B2C2B
+!*pointerColorForeground:          #16A085
+ssh-askpass*background: #000000
+
+!Xcursor.theme: Adwaita
+!Xcursor.size:                     0
