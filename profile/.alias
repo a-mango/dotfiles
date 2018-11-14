@@ -1,9 +1,8 @@
 alias cp="cp -i"                    # Confirm before overwriting
 alias df='df -h'                    # Human-readable sizes
 alias free='free -m'                # Show sizes in MB
-alias np='nano -w PKGBUILD'
-alias more=most
+alias more=most                     # Always use most
 alias less=most                     # Always use most
-alias ping='ping 1.1.1.1'
+alias ping='ping 1.1.1.1'           # Bing to CloudFlare DNS by default
 alias readme='most README.MD'       # Open README.md with most
-alias code=code-oss
+alias code=code-oss                 # Qol improvment to start VS Code
