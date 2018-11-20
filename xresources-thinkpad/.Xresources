@@ -1,5 +1,4 @@
 !! Include files from .config/x11 dir
-#include ".config/X11/ssh-askpass"
 #include ".config/X11/colors"
 
 Xft.dpi: 120
