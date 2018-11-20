@@ -30,16 +30,17 @@ offset-x = 0
 offset-y = 0
 bottom = true
 
-module-margin = 1
+module-margin = 0
 
-background = #282828
-foreground = #ebdbb2
+background = ${colors.background}
+foreground = ${colors.foreground}
+
 # linecolor = #a89984
-# border-color = #282828
+border-color = ${colors.gray}
 line-size = 2
 
 border-top-size = 2
-border-top-color = #a89984
+# border-top-color = #a89984
 ;border-left = 0
 ;border-left-color = #0f0
 ;border-right = 0
@@ -51,7 +52,7 @@ module-margin-left = 1
 module-margin-right = 2
 
 font-0 = BlexMono Nerd Font:pixelsize=13;4
-font-1 = BlexMono Nerd Font Mono:pixelsize=12;4
+font-1 = BlexMono Nerd Font Mono:pixelsize=12;1
 font-2 = Termsynu:size=8;-2
 
 tray-position = right
@@ -61,7 +62,7 @@ tray-scale = 1
 modules-left = workspaces
 modules-center = date
 # modules-right = volume wifi battery backlight memory cpu date
-modules-right = wifi mem cpu
+modules-right = wifi mem cpu bat0 bat1
 
 [module/mem]
 
@@ -70,6 +71,9 @@ interval = 3
 
 format = <label> <ramp-used>
 label = MEM
+
+format-underline = ${colors.color8}
+# format-padding = 1
 
 ramp-used-0 = %{F#ebdbb2}
 ramp-used-1 = %{F#a89984}
@@ -84,6 +88,9 @@ ramp-used-7 = %{F#cc241d}
 type = internal/cpu
 interval = 0.5
 format = <label> <ramp-load>
+# format-foreground = ${colors.background}
+format-underline = ${colors.color8}
+# format-padding = 1
 label = CPU
 ramp-load-0 = %{F#ebdbb2}
 ramp-load-1 = %{F#a89984}
@@ -107,7 +114,9 @@ format-connected = <label-connected> <ramp-signal>
 label-connected = NET
 # label-disconnected = %{F#66c6b8e6}%{F#ccd8d4e6} not connected
 # label-disconnected-foreground = #66c6b8e6
+format-connected-underline = ${colors.color8}
 
+# format-connected-padding = 1
 ramp-signal-0 = %{F#cc241d}
 ramp-signal-1 = %{F#fb4934}
 ramp-signal-2 = %{F#d79921}
@@ -128,6 +137,7 @@ label-disconnected-foreground = #66c6b8e6
 type = internal/date
 date = %{T2}%Y-%m-%d %{T2} %H:%M:%S
 interval = 1
+format-underline = ${colors.color8}
 
 [module/xwindow]
 type = internal/xwindow
@@ -158,20 +168,20 @@ label-mode-background = #e60053
 
 label-focused = %{F#d79921} %name%
 label-focused-padding = 1
-label-focused-margin = 0.5
+label-focused-margin = 0
 label-focused-foreground = ${colors.color3}
 label-focused-underline = ${colors.color3}
 
 label-unfocused = %name%
 label-unfocused-padding = 1
-label-unfocused-margin = 0.5
-# label-unfocused-underline = ${colors.color8}
+label-unfocused-margin = 0
+label-unfocused-underline = ${colors.color8}
 label-visible-padding = 1
-label-visible-margin = 0.5
+label-visible-margin = 0
 
-label-urgent = %name%
+label-urgent = %{F#cc241d} %name%
 label-urgent-padding = 1
-label-urgent-margin = 0.5
+label-urgent-margin = 0
 label-urgent-foreground = ${colors.color9}
 label-urgent-underline = ${colors.color9}
 
@@ -180,40 +190,91 @@ label-separator =
 label-separator-padding = 0
 label-separator-foreground = #ffb52a
 
-[module/mpd]
-type = internal/mpd
+[module/bat0]
+type = internal/battery
 
-format-online = <label-song>  <label-time>  <bar-progress>  <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>
-format-offline = <label-offline>
-format-offline-foreground = #66
-label-offline = mpd is off
+full-at = 99
+; $ ls -1 /sys/class/power_supply/
+battery = BAT0
+battery_snd = BAT1
+adapter = AC
 
-label-song-maxlen = 40
+; Polling interval
+poll-interval = 0
 
-icon-prev = 
-icon-seekb = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-icon-seekf = 
+; see "man date" for details on how to format the time string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+; Default: %H:%M:%S
+time-format = %H:%M
+format-charging = <label-charging> <animation-charging>
+format-discharging = <label-discharging> <ramp-capacity>
+format-full = <label-full> <ramp-capacity>
+format-discharging-underline = ${colors.color8}
 
-icon-random = 
-icon-repeat = 
+label-charging = BAT
+label-discharging = BAT
+label-full = BAT
 
-toggle-on-foreground = #fba922
-toggle-off-foreground = #66c6b8e6
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = %{F#cc241d}
+ramp-capacity-1 = %{F#fb4934}
+ramp-capacity-2 = %{F#d79921}
+ramp-capacity-3 = %{F#fabd2f}
+ramp-capacity-4 = %{F#98971a}
 
-bar-progress-width = 15
-bar-progress-indicator = 
-bar-progress-indicator-foreground = #bb
-bar-progress-fill = ─
-bar-progress-fill-foreground = #bb
-bar-progress-fill-font = 3
-bar-progress-empty = ─
-bar-progress-empty-foreground = #66c6b8e6
-bar-progress-empty-font = 3
+; Only applies if <animation-charging> is used
+animation-charging-0 = %{F#b8bb26}
+animation-charging-1 = %{F#b8bb26}
+animation-charging-2 = %{F#b8bb26}
 
-label-time-foreground = #66c6b8e6
+; Framerate in milliseconds
+animation-charging-framerate = 1500
+
+; Only applies if <animation-discharging> is used
+animation-discharging-0 = %{F#d79921}
+animation-discharging-1 = %{F#d79921}
+
+; Framerate in milliseconds
+animation-discharging-framerate = 500
+
+[module/VOL]
+type = internal/pulseaudio
+
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+sink = alsa_output.pci-0000_12_00.3.analog-stereo
+
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = false
+
+; Interval for volume increase/decrease (in percent points) (unreleased)
+; Default: 5
+interval = 5
+; Available tags:
+;   <label-volume> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-volume = <label-volume> <ramp-volume>
+
+; Available tags:
+;   <label-muted> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-muted = <label-muted>
+
+; Available tokens:
+;   %percentage% (default)
+label-volume = VOL
+
+; Available tokens:
+;   %percentage% (default)
+label-muted = 🔇 muted
+label-muted-foreground = #666
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = 🔈
+ramp-volume-1 = 🔉
+ramp-volume-2 = 🔊
 
 ; vim:ft=dosini
